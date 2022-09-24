@@ -6,9 +6,9 @@ import Exercise from '../../models/exerciseModel.js'
 // @access Private
 
 export const addNewExercise = asyncHandler(async (req,res) => {
-    const {name,times,image} = req.body
+    const {name,times,imageId} = req.body
     const exercise = await Exercise.create({
-        name,times,image
+        name,times,imageId
     })
     res.json(exercise)
 })
