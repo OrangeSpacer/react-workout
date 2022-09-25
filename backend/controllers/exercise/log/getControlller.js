@@ -1,31 +1,6 @@
 import asyncHandler from 'express-async-handler'
-import { reBuildTimes } from '../../helper/exerciseLog.js'
-import ExerciseLog from '../../models/exerciseLogModel.js'
-
-// @desc Create new exercises
-// @route POST /api/exercises/log
-// @access Private
-
-export const createNewExerciseLog = asyncHandler(async (req,res) => {
-    const { exerciseId, times } = req.body
-
-    let timesArray = []
-
-    for(let i = 0;i  < times;i ++){
-        timesArray.push({
-            weight: 0,
-            repeat: 0,
-        })
-    }
-
-
-    const exerciseLog = await ExerciseLog.create({
-        user: req.user._id,
-        exercise: exerciseId,
-        times: timesArray
-    })
-    res.json(exerciseLog)
-})
+import { reBuildTimes } from '../../../helper/exerciseLog.js'
+import ExerciseLog from '../../../models/exerciseLogModel.js'
 
 // @desc Get new exercises
 // @route Get /api/exercises/log/:id
@@ -36,6 +11,11 @@ export const getExerciseLog = asyncHandler(async (req,res) => {
         'exercise', 
         'name imageId'
     ).lean()
+
+    if(!exerciseLog){
+        res.status(404)
+        throw new Error('Лог не найден')
+    }
 
     const prevExercisesLogs = await ExerciseLog.find({
         user: req.user._id, 
