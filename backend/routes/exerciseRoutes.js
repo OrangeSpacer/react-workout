@@ -1,6 +1,6 @@
 import express from "express";
 import { createNewExerciseLog} from "../controllers/exercise/log/createController.js";
-import { getExerciseLog } from "../controllers/exercise/log/getControlller.js";
+import { getExerciseLog } from "../controllers/exercise/log/getController.js";
 import { updateCompleteExerciseLog, updateExerciseLog } from "../controllers/exercise/log/updateController.js";
 import { createNewExercise } from "../controllers/exercise/mainController.js";
 import { protect } from "../middleware/authMiddleware.js";
