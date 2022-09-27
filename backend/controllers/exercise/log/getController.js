@@ -9,7 +9,7 @@ import ExerciseLog from '../../../models/exerciseLogModel.js'
 export const getExerciseLog = asyncHandler(async (req,res) => {
     const exerciseLog = await ExerciseLog.findById(req.params.id).populate(
         'exercise', 
-        'name'
+        'name',
     ).lean()
 
     if(!exerciseLog){
