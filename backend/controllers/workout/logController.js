@@ -57,3 +57,24 @@ export const createNewWorkoutLog = asyncHandler(async (req,res) => {
 })
 
 
+
+// @desc Get workout log
+// @route GET /api/workouts/log/:id
+// @access Private
+
+export const getWorkoutLog = asyncHandler(async (req,res) => {
+    const workoutLog = await Workout.findById(req.params.id)
+        .populate('workout')
+        .populate({
+            path: 'exerciseLogs',
+            populate: {
+                path: 'exercise'
+            }
+        }).lean()
+
+        const minutes = Math.ceil(workoutLog.workout.exercises.length * 3.7)
+
+        res.json({ ...workoutLog , minutes})
+})
+
+
