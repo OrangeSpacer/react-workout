@@ -20,7 +20,7 @@ export const getExerciseLog = asyncHandler(async (req,res) => {
     const prevExercisesLogs = await ExerciseLog.find({
         user: req.user._id, 
         exercise: exerciseLog._id
-    }).sort('desc')
+    }).sort({ createdAt: 'desc'})
 
     const prevExLog = prevExercisesLogs[0]
     

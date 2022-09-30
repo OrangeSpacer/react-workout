@@ -14,6 +14,18 @@ export const createNewExercise = asyncHandler(async (req,res) => {
 })
 
 
+
+// @desc Get exercises
+// @route POST /api/exercises
+// @access Private
+
+export const getExercises = asyncHandler(async (req,res) => {
+    const exercise = await Exercise.find({})
+    
+    res.json(exercise)
+})
+
+
 // @desc Update exercise
 // @route PUT /api/exercise
 // @acces Private
