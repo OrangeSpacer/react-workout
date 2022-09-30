@@ -1,6 +1,6 @@
 import express from "express";
 import { createNewExerciseLog} from "../controllers/exercise/log/createController.js";
-import { getExerciseLog } from "../controllers/exercise/log/getController.js";
+import { getExerciseLog, getExerciseLogList } from "../controllers/exercise/log/getController.js";
 import { updateCompleteExerciseLog, updateExerciseLog } from "../controllers/exercise/log/updateController.js";
 import { createNewExercise, deleteExercise, getExercises, updateExercise } from "../controllers/exercise/mainController.js";
 import { protect } from "../middleware/authMiddleware.js";
@@ -15,6 +15,7 @@ router
 
 router
     .route('/log')
+        .get(protect, getExerciseLogList)
         .post(protect,createNewExerciseLog)
         .put(protect, updateExerciseLog)
 

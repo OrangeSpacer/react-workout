@@ -15,7 +15,7 @@ router
 
 router.route('/log').post(protect,createNewWorkoutLog)
 router.route('/log/completed').put(protect, updateCompletedWorkoutLog)
-.router.route('/:id').get(protect, getWorkout)
+router.route('/:id').get(protect, getWorkout)
 router.route('/log/:id').get(protect,getWorkoutLog)
 
 
