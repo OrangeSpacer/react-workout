@@ -1,1 +1,7 @@
-
+.home{
+    text-align: center;
+    &__counters{
+        display: flex;
+        justify-content: space-between;
+    }
+}
