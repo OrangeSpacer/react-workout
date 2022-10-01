@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+.title{
+    font-size: 23px;
+    color: $light-black;
+    text-transform: uppercase;
+}
+
+.l{
+    text-align: left;
+}
+
+.c{
+    text-align: center;
+}
+
+.r{
+    text-align: right;
+}
