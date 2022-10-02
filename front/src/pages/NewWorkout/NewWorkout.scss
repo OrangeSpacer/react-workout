@@ -1,0 +1,54 @@
+@import '../../styles/variables';
+
+.newWorkout{
+    &__form{
+        display: flex;
+        flex-direction: column;
+    }
+    &__select{
+        &__control{
+            margin: 20px 0;
+            font-size: 18px;
+            padding: 10px 0px !important;
+            border: 1px solid black !important;
+            border-radius: 0 !important;
+            color: $black;
+            outline: none;
+            transition: all 0.5s ease;
+        }
+        &__multi-value{
+            background-color: $light-black !important;
+            &__label{
+                color: $main !important;
+            }
+            &__remove{
+                color: $main !important;
+                &:hover{
+                    background: $black !important;
+                }
+            }
+        }
+        &__indicator{
+            color: $light-black !important;
+        }
+        &__placeholder{
+            color: $black !important;
+        }
+        &__input{
+            color: $black !important;
+        }
+        &__menu{
+            background: $main !important;
+        }
+        &__option{
+            &--is-focused{
+                color: $main !important;
+                background: $light-black !important;
+            }
+            &--is-selected{
+                color: $main !important;
+                background: $light-black !important;
+            }
+        }
+    }
+}

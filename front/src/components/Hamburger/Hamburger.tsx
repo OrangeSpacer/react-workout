@@ -14,7 +14,7 @@ const Hamburger = () => {
   return (
     <div className='hamburger'>
         <Button onClick={showHandler} className="hamburger__button">
-            {show ? <img src="img/header/close.svg" alt="closeHamburger" /> : <img src="img/header/hamburger.svg" alt="openhamburger" />}
+            {show ? <img src="img/header/close.svg" alt="closeHamburger" style={{height:'24px'}}/> : <img src="img/header/hamburger.svg" alt="openhamburger" style={{height:'24px'}}/>}
         </Button>
         <nav className='hamburger__menu' style={show ? {opacity:1,transform: 'translateY(0)'}: {opacity:0,transform: 'translateY(-200%)'}}>
             <ul className='hamburger__menu_list'>
