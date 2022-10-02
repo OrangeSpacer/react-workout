@@ -1,3 +1,4 @@
+import Hamburger from "../Hamburger/Hamburger";
 import Button from "../UI/Button/Button";
 import { HeaderProps } from "./Header.props";
 
@@ -8,9 +9,7 @@ const Header = ({children,...props}:HeaderProps):JSX.Element => {
             <Button>
                 <img src="img/header/account.svg" alt="accountLink" />
             </Button>
-            <Button>
-                <img src="img/header/hamburger.svg" alt="hamburger" />
-            </Button>
+            <Hamburger/>
         </header>
     );
 }

@@ -1,0 +1,43 @@
+@import '../../styles/variables';
+
+.hamburger{
+    overflow: hidden;
+    &__button{
+        z-index: 2000;
+        position: relative;
+    }
+    &__menu{
+        position: absolute;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 0;
+        right: 0;
+        height: 150px;
+        top: 0;
+        text-align: center;
+        z-index: 1000;
+        transition: all 0.5s ease;
+        &_list{
+            list-style-type: none;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        &_item{
+            &:not(:last-child){
+                margin-bottom: 5px;
+            }
+        }
+    }
+    &__link{
+        font-size: 18px;
+        text-decoration: none;
+        color: $light-black;
+        transition: all 0.5s ease;
+        &:hover{
+            color: $red;
+            transition: all 0.5s ease;
+        }
+    }
+}
