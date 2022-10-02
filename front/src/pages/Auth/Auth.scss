@@ -1,0 +1,19 @@
+.auth{
+    &__form{
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        input{
+            margin-bottom: 20px;
+        }
+        &_btns{
+            display: flex;
+            justify-content: flex-start;
+            button{
+                &:not(:last-child){
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}

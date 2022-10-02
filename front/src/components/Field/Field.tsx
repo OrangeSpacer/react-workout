@@ -2,9 +2,9 @@ import { FieldProps } from './Field.props'
 
 import './Field.scss'
 
-const Field = ({type,changeValue,placeHolder,value}:FieldProps):JSX.Element => {
+const Field = ({type="text",changeValue,placeHolder,value,required}:FieldProps):JSX.Element => {
   return (
-    <input className='field' type="text" placeholder={placeHolder} value={value} onChange={changeValue}/>
+    <input className='field' required={required} type={type} placeholder={placeHolder} value={value} onChange={changeValue}/>
   )
 }
 

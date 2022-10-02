@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+.alert{
+    font-size: 18px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: show .5s ease;
+    &__success{
+        color: $light-black;
+        background: #2a9d8f;
+    }
+    &__warning{
+        color: $main;
+        background: #e9c46a;
+    }
+    &__error{
+        color: $main;
+        background: red;
+    }
+}
+
+@keyframes show {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

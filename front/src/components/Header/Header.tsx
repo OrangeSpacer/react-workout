@@ -13,7 +13,7 @@ const Header = ({children,...props}:HeaderProps):JSX.Element => {
                 <Button onClick={() => history(-1)}>
                     Test
                 </Button>:
-                <Button>
+                <Button onClick={() => history('/auth')}>
                     <img src="img/header/account.svg" alt="accountLink" />
                 </Button>
             }
