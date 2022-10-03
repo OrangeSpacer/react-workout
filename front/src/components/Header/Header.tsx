@@ -14,10 +14,10 @@ const Header = ({children,...props}:HeaderProps):JSX.Element => {
         <header className="header">
             {location.pathname!=='/' ? 
                 <Button onClick={() => history(-1)}>
-                    Test
+                    <img src="img/header/arrow.svg" alt="back" />
                 </Button>:
                 <Button onClick={() => history(isAuth ?  '/profile': '/auth')}>
-                    <img src="img/header/account.svg" alt="accountLink" />
+                    <img src={isAuth ? "img/header/auth.svg":"img/header/account.svg"} alt="accountLink" />
                 </Button>
             }
             <Hamburger/>

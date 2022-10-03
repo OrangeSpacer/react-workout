@@ -6,6 +6,7 @@ import { $api } from '../../components/api/api'
 import Field from "../../components/Field/Field"
 import Title from '../../components/Title/Title'
 import Button from '../../components/UI/Button/Button'
+import { useAuth } from '../../hooks/useAuth'
 
 import './Auth.scss'
 
@@ -13,34 +14,52 @@ const Auth = ():JSX.Element => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const [type,setType] = useState('auth')
+    const {setIsAuth} = useAuth()
 
     const history = useNavigate()
 
-    const {mutate: register,error} = useMutation('Registration',() => $api(
+    const successLogin = (token:string) => {
+        localStorage.setItem('token', token)
+        setIsAuth(true)
+
+                    
+        setEmail('')
+        setPassword('')
+
+        history('/')
+    }
+
+    const {mutate: register,error: errReg} = useMutation('Registration',() => $api(
         {url:'/users',
         type: 'POST', 
         body: {email,password}, 
         auth: false
     }),{
         onSuccess(data){
-            localStorage.setItem('token', data.token)
-            console.log(data)
+            successLogin(data.token)
         }
     })
+
+    const {mutate: auth,error: errAuth} = useMutation('Auth',() => $api(
+        {url:'/users/login',
+        type: 'POST', 
+        body: {email,password}, 
+        auth: false
+    }),{
+        onSuccess(data){
+            successLogin(data.token)
+        }
+    })
+
+
 
     const handleSubmit = (e:any) => {
         e.preventDefault()
         if(type === 'auth'){
-            console.log('Auth')
+            auth()
         }
         else{
             register()
-            
-            setEmail('')
-            setPassword('')
-
-            history('/')
-
         }
     }
     
@@ -59,7 +78,8 @@ const Auth = ():JSX.Element => {
             </Title>
             <form onSubmit={handleSubmit} className="auth__form">
                 <>
-                    {error && <Alert type='error' text={`${error}`}/>}
+                    {errReg && <Alert type='error' text={`${errReg}`}/>}
+                    {errAuth && <Alert type='error' text={`${errAuth}`}/>}
                 </>
                 <Field required={true} type="email" placeHolder="Enter email" value={email} changeValue={emailHandler}/>
                 <Field required={true} type='text' placeHolder="Enter password" value={password} changeValue={passwordHandler}/>

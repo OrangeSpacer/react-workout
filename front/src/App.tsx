@@ -1,22 +1,30 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import {useState} from 'react'
 import Layout from './components/Layout/Layout'
 import { AuthContext } from './Context/AuthContext'
-import Auth from './pages/Auth/Auth'
-import Home from './pages/Home/Home'
-import NewWorkout from './pages/NewWorkout/NewWorkout'
+import { routes } from './routes'
+import NotFound from './pages/404/NotFound'
 const App = () => {
   const [isAuth,setIsAuth] = useState(false)
+  const location = useLocation()
+
   return(
-    <Layout>
-      <AuthContext.Provider value={{isAuth,setIsAuth}}>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/new-workout' element={<NewWorkout/>}/>
-          <Route path='/auth' element={<Auth/>}/>
-        </Routes>
-      </AuthContext.Provider>
-    </Layout>
+    <AuthContext.Provider value={{isAuth,setIsAuth}}>
+      <Layout>
+          <Routes>
+              {routes.map((item:any) => {
+                  if(item.auth && !isAuth){
+                    return false
+                  }
+                  return(
+                    <Route key={item.path} path={item.path} element={<item.component/>}/>
+                  )
+                }
+              )}
+              <Route path={location.pathname} element={<NotFound/>}/>
+          </Routes>
+      </Layout>
+    </AuthContext.Provider>
   )
 }
 
