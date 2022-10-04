@@ -3,11 +3,11 @@ import { CounterProps } from './Counter.props'
 
 import './Counter.scss'
 
-const Counter = ({title,value}:CounterProps):JSX.Element => {
+const Counter = ({title,value,otherValue}:CounterProps):JSX.Element => {
   return (
     <div className='counter'>
         <div className='counter__title'>
-            {title}
+          {title}
         </div>
         <div className='counter__value'>
             {value}

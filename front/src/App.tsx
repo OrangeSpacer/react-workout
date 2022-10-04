@@ -5,7 +5,7 @@ import { AuthContext } from './Context/AuthContext'
 import { routes } from './routes'
 import NotFound from './pages/404/NotFound'
 const App = () => {
-  const [isAuth,setIsAuth] = useState(false)
+  const [isAuth,setIsAuth] = useState(!!localStorage.getItem('token'))
   const location = useLocation()
 
   return(

@@ -9,15 +9,15 @@ const instance = axios.create({
 
 interface ApiInterface{
     url:string,
-    type:string,
-    auth:boolean,
-    body: {}
+    type?:string,
+    auth?:boolean,
+    body?: {}
 }
 
-export const $api = async ({url, type = 'GET', auth = false, body}:ApiInterface) => {
+export const $api = async ({url, type = 'GET', auth = true, body}:ApiInterface) => {
     if(auth){
         const token:any = localStorage.getItem('token')
-        instance.defaults.headers.common['Authorization'] = token
+        instance.defaults.headers.common['Authorization'] =`Bearer ${token}`
     }
     try{
         switch(type){
