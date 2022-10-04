@@ -26,7 +26,7 @@ const NewWorkout = ():JSX.Element => {
     <div className='newWorkout'>
         <div>
           <Title tag='h2' side='c'>
-            Create new Exercise
+            Create new Workout
           </Title>
         </div>
         <form onSubmit={handleSubmit} className="newWorkout__form">

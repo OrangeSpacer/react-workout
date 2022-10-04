@@ -4,6 +4,6 @@ export interface FieldProps extends DetailedHTMLProps<HTMLAttributes<HTMLFormEle
     placeHolder: string,
     type?: string,
     required?: boolean,
-    value?: string,
+    value?: string | number,
     changeValue: any
 }

@@ -10,5 +10,5 @@ export const menu: {title:string,link:string}[] = [
     {
         title:'Profile',
         link:'/profile'
-    },
+    }
 ]
