@@ -5,14 +5,10 @@
         color: $gray;
         margin-bottom: 20px;
     }
-    &__exercises{
-        >div{
-            &:not(:last-child){
-                margin-bottom: 20px;
-            }
-        }
-    }
     &__link{
         text-decoration: none;
+        >div{
+            margin-bottom: 20px;
+        }
     }
 }
