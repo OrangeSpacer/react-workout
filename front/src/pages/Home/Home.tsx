@@ -14,7 +14,7 @@ const Home = ():JSX.Element => {
   const {isAuth} = useAuth()
   const [profileInfo,setProfileInfo]:any = useState(0)
 
-  const {isSuccess} = useQuery('Registration',() => $api(
+  const {isSuccess} = useQuery('Home',() => $api(
     {url:'/users/profile',
   }),{
       onSuccess(data){
