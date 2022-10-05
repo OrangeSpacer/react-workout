@@ -1,0 +1,18 @@
+@import '../../styles/variables';
+
+.singleWorkout{
+    &__time{
+        color: $gray;
+        margin-bottom: 20px;
+    }
+    &__exercises{
+        >div{
+            &:not(:last-child){
+                margin-bottom: 20px;
+            }
+        }
+    }
+    &__link{
+        text-decoration: none;
+    }
+}

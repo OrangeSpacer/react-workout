@@ -3,6 +3,7 @@ import Home from "./pages/Home/Home";
 import NewExercise from "./pages/NewExercise/NewExercise";
 import NewWorkout from "./pages/NewWorkout/NewWorkout";
 import Profile from "./pages/Profile/Profile";
+import SingleWorkout from "./pages/SingleWorkout/SingleWorkout";
 
 
 export const routes:{path:string,component: () => JSX.Element,auth?:boolean}[] = [
@@ -29,6 +30,11 @@ export const routes:{path:string,component: () => JSX.Element,auth?:boolean}[] =
     {
         path:'/profile',
         component: Profile,
+        auth: true
+    },
+    {
+        path: '/workouts/:id',
+        component:SingleWorkout,
         auth: true
     }
 ]

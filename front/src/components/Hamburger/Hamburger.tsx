@@ -23,7 +23,7 @@ const Hamburger = () => {
   return (
     <div className='hamburger' ref={ref}>
         <Button onClick={showHandler} className="hamburger__button">
-            {isComponentVisible ? <img src="img/header/close.svg" alt="closeHamburger" style={{height:'24px'}}/> : <img src="img/header/hamburger.svg" alt="openhamburger" style={{height:'24px'}}/>}
+            {isComponentVisible ? <img src="../img/header/close.svg" alt="closeHamburger" style={{height:'24px'}}/> : <img src="../img/header/hamburger.svg" alt="openhamburger" style={{height:'24px'}}/>}
         </Button>
         <nav className='hamburger__menu' style={isComponentVisible ? {opacity:1,transform: 'translateY(0)'}: {opacity:0,transform: 'translateY(-200%)'}}>
             <ul className='hamburger__menu_list'>
