@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import { $api } from '../../components/api/api'
 import Title from '../../components/Title/Title'
 
+import './ListWorkouts.scss'
+
+
 const ListWorkouts = () => {
   const [workouts,setWorkouts]:any = useState([])
 
@@ -18,14 +21,14 @@ const ListWorkouts = () => {
   })
 
   return (
-    <div>
+    <div className='ListWorkouts'>
       <Title tag='h2' side='c'>
         Workouts list
       </Title>
       <div>
           {isSuccess && 
             workouts.map((item:any) => 
-              <Link to={`/workout/:${item._id}`}>
+              <Link key={item.name} to={`/workout/:${item._id}`} className="ListWorkouts__item">
                   <div>
                     {item.name}
                   </div>

@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.ListWorkouts{
+    &__item{
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        max-width: 500px;
+        padding: 5px;
+        color: $light-black;
+        text-decoration: none;
+        border: 1px solid $black;
+        border-radius: 15px;
+    }
+}

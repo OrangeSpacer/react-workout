@@ -1,4 +1,5 @@
 import Auth from "./pages/Auth/Auth";
+import Exercises from "./pages/Exercises/Exercises";
 import Home from "./pages/Home/Home";
 import ListWorkouts from "./pages/ListWorkouts/ListWorkouts";
 import NewExercise from "./pages/NewExercise/NewExercise";
@@ -40,6 +41,11 @@ export const routes:{path:string,component: () => JSX.Element,auth?:boolean}[] =
     {
         path: '/workouts',
         component:ListWorkouts,
+        auth: true
+    },
+    {
+        path:'/exercise/:id',
+        component: Exercises,
         auth: true
     }
 ]
