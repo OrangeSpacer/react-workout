@@ -1,6 +1,6 @@
 import express from "express";
 import { createNewWorkoutLog, getWorkoutLog, updateCompletedWorkoutLog } from "../controllers/workout/logController.js";
-import { createNewWorkout, deleteWorkout, getWorkout, getWorkouts, updateWorkoutLog } from "../controllers/workout/workoutController.js";
+import { createNewWorkout, deleteWorkout, getWorkout, getWorkouts, updateWorkout } from "../controllers/workout/workoutController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router()
@@ -9,7 +9,7 @@ router
     .route('/')
         .get(protect,getWorkouts)
         .post(protect,createNewWorkout)
-        .put(protect,updateWorkoutLog)
+        .put(protect,updateWorkout)
         .delete(protect,deleteWorkout)
 
 

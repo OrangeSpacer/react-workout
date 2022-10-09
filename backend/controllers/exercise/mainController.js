@@ -31,7 +31,7 @@ export const getExercises = asyncHandler(async (req,res) => {
 // @acces Private
 
 export const updateExercise = asyncHandler(async (req,res) => {
-    const {name, times, image, exerciseId} = req.body
+    const {name, times, imageId, exerciseId} = req.body
 
     const exercise = await Exercise.findById(exerciseId)
 
@@ -42,7 +42,7 @@ export const updateExercise = asyncHandler(async (req,res) => {
 
     exercise.name = name
     exercise.times = times
-    exercise.image =  image
+    exercise.imageId =  imageId
 
     const updateWorkout = await exercise.save()
 

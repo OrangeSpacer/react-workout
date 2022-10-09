@@ -12,7 +12,7 @@ export const createNewWorkoutLog = asyncHandler(async (req,res) => {
 
     const user = req.user._id
 
-    const workout = await WorkoutLog.findById(workoutId).populate('exercises')
+    const workout = await Workout.findById(workoutId).populate('exercises')
 
     if(workout){
         const workoutLog = await WorkoutLog.create({
@@ -43,8 +43,10 @@ export const createNewWorkoutLog = asyncHandler(async (req,res) => {
         const exLogIds = createdExLogs.map(log => log._id)
     
         const foundWorkoutLog = await WorkoutLog.findById(workoutLog._id)
+
+        console.log(foundWorkoutLog)
     
-        foundWorkoutLog.exerciseLog = exLogIds
+        foundWorkoutLog.exerciseLogs = exLogIds
     
         const updatedWorkoutLog = await foundWorkoutLog.save()
     
@@ -63,7 +65,7 @@ export const createNewWorkoutLog = asyncHandler(async (req,res) => {
 // @access Private
 
 export const getWorkoutLog = asyncHandler(async (req,res) => {
-    const workoutLog = await Workout.findById(req.params.id)
+    const workoutLog = await WorkoutLog.findById(req.params.id)
         .populate('workout')
         .populate({
             path: 'exerciseLogs',

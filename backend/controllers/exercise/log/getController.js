@@ -9,7 +9,7 @@ import ExerciseLog from '../../../models/exerciseLogModel.js'
 export const getExerciseLog = asyncHandler(async (req,res) => {
     const exerciseLog = await ExerciseLog.findById(req.params.id).populate(
         'exercise', 
-        'name imageName',
+        'name imageId',
     ).lean()
 
     if(!exerciseLog){
@@ -19,7 +19,7 @@ export const getExerciseLog = asyncHandler(async (req,res) => {
 
     const prevExercisesLogs = await ExerciseLog.find({
         user: req.user._id, 
-        exercise: exerciseLog._id,
+        exercise: exerciseLog.exercise._id,
         completed: true,
     }).sort({ createdAt: 'desc'})
 
@@ -45,7 +45,7 @@ export const getExerciseLogList = asyncHandler(async (req,res) => {
         user: req.user._id,
         completed: true
     })
-    .populate('exercise', 'name imageName')
+    .populate('exercise', 'name imageId')
     .select('exercise createdAt')
     .lean()
 
