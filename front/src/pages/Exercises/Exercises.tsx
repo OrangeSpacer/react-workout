@@ -1,20 +1,19 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { $api } from '../../components/api/api'
 import cn from 'classnames'
 import Title from '../../components/Title/Title'
-
 import './Exercises.scss'
 import Alert from '../../components/Alert/Alert'
 
 const Exercises = () => {
     let {id}:any = useParams()
-    const [exInfo,setExInfo]:any = useState()
-
+    const [exInfo,setExInfo]:any = useState([])
+    const history = useNavigate()
     const newId = id.replace(":","")
 
-    const {isSuccess,refetch} = useQuery('get Exercise', () => $api({
+    const {data,isSuccess,refetch} = useQuery('get Exercise log', () => $api({
         url:`/exercises/log/${newId}`
     }),{
         onSuccess(data){
@@ -23,18 +22,31 @@ const Exercises = () => {
         refetchOnWindowFocus:false
     })
 
-
     const {mutate:changeState,error} = useMutation('Change log state', ({timeIndex,key,value}:any) => $api({
         url: '/exercises/log',
         type: "PUT",
         body: {timeIndex,key,value, logId: newId}
     }),{
-        onSuccess(data){
+        onSuccess(){
             refetch()
         }
     })
 
+    const {mutate:setExCompleted,error:errorCompleted} = useMutation('Change log state', () => $api({
+        url: '/exercises/log/completed',
+        type: "PUT",
+        body: {logId: newId, completed: true}
+    }),{
+        onSuccess(){
+            history(`/workout/:${data.workoutLog}`)
+        }
+    })
 
+    useEffect(() => {
+        if( isSuccess && data.times.length === data.times.filter((time:{completed:boolean}) => time.completed).length && data._id === newId){
+            setExCompleted()
+        }
+    },[data?.times,isSuccess])
 
     const tableRowsName = [
         {name:"Previous"},
@@ -47,7 +59,7 @@ const Exercises = () => {
             {isSuccess &&
             <>
                 <Title tag='h2'>
-                    {exInfo.exercise.name}
+                    {data.exercise.name}
                 </Title>
                 {error &&
                     <div>
@@ -63,7 +75,7 @@ const Exercises = () => {
                         )}
                     </div>
                     <div>
-                        {exInfo.times.map((item:any,index:number) => 
+                        {data.times.map((item:any,index:number) => 
                             <div key={index} className='exTable__info'>
                                 <div className={cn('exTable__item','exTable__multi')}>
                                     <input value={item.prevWeight} 
@@ -80,7 +92,7 @@ const Exercises = () => {
                                 </div>
                                 <div className={cn('exTable__item','exTable__multi')}>
                                     <input 
-                                        value={item.weight} 
+                                        defaultValue={0} 
                                         onChange={e => changeState({
                                             timeIndex: index,
                                             key: "weight",
@@ -93,7 +105,7 @@ const Exercises = () => {
                                         kg/
                                     </i>
                                     <input 
-                                            value={item.repeat} 
+                                            defaultValue={0} 
                                             onChange={e => changeState({
                                                 timeIndex: index,
                                                 key: "repeat",

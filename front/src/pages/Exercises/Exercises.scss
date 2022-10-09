@@ -36,6 +36,7 @@
             input{
                 padding: 0;
                 width: 50%;
+                color: $gray;
                 &:first-child{
                     text-align: right;
                 }
@@ -52,6 +53,7 @@
                 border: none;
                 text-align: center;
                 outline: none;
+                background: transparent;
             }
             &_completed{
                 color: green;

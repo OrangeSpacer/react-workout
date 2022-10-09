@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
@@ -6,52 +6,56 @@ import Alert from '../../components/Alert/Alert'
 import { $api } from '../../components/api/api'
 import Exercise from '../../components/Exercise/Exercise'
 import Title from '../../components/Title/Title'
-import Button from '../../components/UI/Button/Button'
 
 import './SingleWorkout.scss'
 
 const SingleWorkout = () => {
-    const [infoEx,setInfoEx]:any = useState([])
     const history = useNavigate()
     let {id}:any = useParams()
     let newId = id.replace(':','')
     
     const {isSuccess,data:content} = useQuery('Get workout', () => $api({
-        url: `workouts/${newId}`
+        url: `workouts/log/${newId}`
     }),{
-        onSuccess(data){
-            setInfoEx(data.exercises)
-        }
+        refetchOnWindowFocus:false
     })
 
-    const {mutate} = useMutation("Create exercise log", ({ exId, times }:any) => $api({
-        url:'/exercises/log',
-        type: "POST",
-        body: {exerciseId: exId, times}
+    const {mutate:setWorkoutCompleted, error:errorCompleted} = useMutation("Change log state", () => $api({
+        url:'/workouts/log/completed',
+        type: "PUT",
+        body: {logId: newId}
     }), {
         onSuccess(data){
             console.log(data)
-            history(`/exercise/:${data._id}`)
+            history(`/workouts`)
         }
-    }
-    )
+    })
+
+    useEffect(() => {
+        if(isSuccess && content.exerciseLogs && 
+            content.exerciseLogs.length === content.exerciseLogs.filter((log:any) => log.completed).length && content._id === newId) {
+                setWorkoutCompleted()
+            }
+    },[content?.exerciseLogs])
+
+    console.log(content)
 
     return (
         <div className='singleWorkout'>
-            {isSuccess && infoEx!==undefined ?
+            {isSuccess ?
                 <>
                     <Title tag='h2' side='c'>
-                        {content.name}
+                        {content.workout.name}
                     </Title>
                     <div className='singleWorkout__time'>
                         {content.minutes + ' minutes training'}
                     </div>
                     <div className='singleWorkout__exercises'>
                         {content ? 
-                            infoEx.map((item:any) => 
-                            <Button onClick={() => mutate({exId:item._id, times:item.times})}  key={item.name} className='singleWorkout__link'>
-                                <Exercise imgPath={`../img/exercise/${item.imageId}.svg`} nameEx={item.name} times={item.times}/>
-                            </Button>):
+                            content.exerciseLogs.map((item:any,index:number) => 
+                            <div onClick={() => history(`/exercise/:${item._id}`)}  key={index} className='singleWorkout__link'>
+                                <Exercise imgPath={`../img/exercise/${item.exercise.imageId}.svg`} nameEx={item.exercise.name} times={item.exercise.times}/>
+                            </div>):
                             <Alert type="error" text="Exercises not found"/>
                         }
                     </div>

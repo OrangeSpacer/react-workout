@@ -1,6 +1,6 @@
 import {useState} from 'react'
-import { useQuery } from 'react-query'
-import { Link } from 'react-router-dom'
+import { useMutation, useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 import { $api } from '../../components/api/api'
 import Title from '../../components/Title/Title'
 
@@ -9,16 +9,31 @@ import './ListWorkouts.scss'
 
 const ListWorkouts = () => {
   const [workouts,setWorkouts]:any = useState([])
-
+  const history = useNavigate()
 
   const { isSuccess } = useQuery('get wrkouts',() => $api({
     url:'/workouts'
   }),{
     onSuccess(data){
       setWorkouts(data)
+      console.log(data)
     },
     refetchOnWindowFocus: false
   })
+
+
+
+  const {mutate: createWorkoutLog, isSuccess:isSuccessMutate, error} = useMutation('Create new workout log', ({workoutId}:any) => $api({
+    url:'/workouts/log',
+    type:"POST",
+    body: {workoutId}
+  }),{
+    onSuccess(data){
+      console.log(data)
+      history(`/workout/:${data._id}`)
+    }
+  })  
+
 
   return (
     <div className='ListWorkouts'>
@@ -28,14 +43,14 @@ const ListWorkouts = () => {
       <div>
           {isSuccess && 
             workouts.map((item:any) => 
-              <Link key={item.name} to={`/workout/:${item._id}`} className="ListWorkouts__item">
+              <div key={item.name} onClick={() => createWorkoutLog({workoutId:item._id})} className="ListWorkouts__item">
                   <div>
                     {item.name}
                   </div>
                   <div>
                     Exercises value: {item.exercises.length}
                   </div>
-              </Link>
+              </div>
             )
           }
       </div>
