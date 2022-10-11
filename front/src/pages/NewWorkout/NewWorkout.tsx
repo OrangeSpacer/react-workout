@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Field from '../../components/Field/Field'
 import Title from '../../components/Title/Title'
 import Button from '../../components/UI/Button/Button'
 import Select from 'react-select'
-import './NewWorkout.scss'
 import { useMutation, useQuery } from 'react-query'
 import { $api } from '../../components/api/api'
 import { useAuth } from '../../hooks/useAuth'
 import Alert from '../../components/Alert/Alert'
+import cn from "classnames"
+
+import './NewWorkout.scss'
 
 const NewWorkout = ():JSX.Element => {
   const {isAuth} = useAuth()
@@ -79,7 +81,7 @@ const NewWorkout = ():JSX.Element => {
               onChange={(e) => handleExercise(e)} 
               options={options}
             />}
-          <Button onClick={() => console.log('Действие')}>
+          <Button className={cn("btn","btn__main")}>
             Create
           </Button>
         </form>

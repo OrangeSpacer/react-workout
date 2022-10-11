@@ -68,7 +68,7 @@ const NewExercise = ():JSX.Element => {
           <div className="newWorkout__form_types">
             {data.map((item,index) => <img key={index} src={`/img/exercise/${item}.svg`} alt="type" onClick={() => setImageId(item)} className={cn({['activeImg']: imageId === item})}/>)}
           </div>
-          <Button onClick={() => console.log('Действие')}>
+          <Button onClick={() => console.log('Действие')} className={cn("btn","btn__main")}>
             Create
           </Button>
         </form>
