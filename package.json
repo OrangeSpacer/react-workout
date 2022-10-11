@@ -6,7 +6,9 @@
   "type": "module",
   "proxy":"http://localhost:5000",
   "scripts": {
-    "start": "node backend/server",
+    "back": "npm i",
+    "front":"npm i --prefix front",
+    "install front": "npm i --prefix front",
     "server": "nodemon backend/server",
     "client": "npm run start --prefix front",
     "dev": "concurrently \"npm run server\" \"npm run client\""
