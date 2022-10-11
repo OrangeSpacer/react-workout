@@ -1,0 +1,33 @@
+@import '../../styles/variables';
+@import '../../styles/animation.scss';
+.newWorkout{
+    &__form{
+        margin: 100px auto 0 auto;
+        display: flex;
+        flex-direction: column;
+        max-width: 500px;
+        width: 100%;
+        input{
+            margin-bottom: 20px;
+        }
+        button{
+            margin: 0 auto;
+            width: 100px;
+        }
+        &_types{
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            position: relative;
+            img{
+                position: relative;
+                &.activeImg{
+                    padding: 2px;
+                    border: 1px solid black;
+                    animation: opactiAnimate 0.5s ease;
+                }
+            }
+
+        }
+    }
+}

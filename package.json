@@ -1,0 +1,40 @@
+{
+  "name": "workout-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "proxy":"http://localhost:5000",
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm run start --prefix front",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OrangeSpacer/react-workout.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OrangeSpacer/react-workout/issues"
+  },
+  "homepage": "https://github.com/OrangeSpacer/react-workout#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "classnames": "^2.3.2",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.1",
+    "node-sass": "^7.0.3"
+  },
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "concurrently": "^7.4.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  }
+}

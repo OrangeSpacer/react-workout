@@ -1,0 +1,16 @@
+@import '../../../styles/variables';
+
+.counter{
+    margin-top: 25px;
+    text-align: center;
+    flex: 1;
+    &__title{
+        text-transform: capitalize;
+        font-size: 17px;
+        color: $gray;
+    }
+    &__value{
+        font-size: 15px;
+        color: $light-black;
+    }
+}

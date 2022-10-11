@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.ListWorkouts{
+    &__item{
+        cursor: pointer;
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-around;
+        max-width: 500px;
+        padding: 5px;
+        color: $light-black;
+        text-decoration: none;
+        border: 1px solid $black;
+        border-radius: 15px;
+        transition: all 0.5s ease;
+        &:hover{
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.5);
+            transition: all 0.5s ease;
+        }
+    }
+}
