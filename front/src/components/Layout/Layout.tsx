@@ -10,9 +10,6 @@ const Layout = ({children,...props}:LayoutProps):JSX.Element => {
         <div className='layout__content'>
           {children}
         </div>
-        <div>
-          Hello footer
-        </div>
     </div>
   )
 }

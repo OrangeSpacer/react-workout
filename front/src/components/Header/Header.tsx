@@ -12,7 +12,7 @@ const Header = ({children,...props}:HeaderProps):JSX.Element => {
     return (
         <header className="header">
             {location.pathname!=='/' ? 
-                <Button onClick={() => history('/')}>
+                <Button onClick={() => history(-1)}>
                     <img src={location.pathname.includes(':') ? "../img/header/arrow.svg":"../img/header/arrow.svg"} alt="back" />
                 </Button>:
                 <Button onClick={() => history(isAuth ?  '/profile': '/auth')}>

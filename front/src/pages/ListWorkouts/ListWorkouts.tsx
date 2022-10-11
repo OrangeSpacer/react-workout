@@ -16,7 +16,6 @@ const ListWorkouts = () => {
   }),{
     onSuccess(data){
       setWorkouts(data)
-      console.log(data)
     },
     refetchOnWindowFocus: false
   })
@@ -29,7 +28,6 @@ const ListWorkouts = () => {
     body: {workoutId}
   }),{
     onSuccess(data){
-      console.log(data)
       history(`/workout/:${data._id}`)
     }
   })  

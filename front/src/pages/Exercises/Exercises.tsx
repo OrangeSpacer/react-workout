@@ -38,7 +38,7 @@ const Exercises = () => {
         body: {logId: newId, completed: true}
     }),{
         onSuccess(){
-            history(`/workout/:${data.workoutLog}`)
+            history(-1)
         }
     })
 
@@ -48,17 +48,17 @@ const Exercises = () => {
         }
     },[data?.times,isSuccess])
 
+
     const tableRowsName = [
         {name:"Previous"},
-        {name:"Repeat & weight"},
+        {name:"Weight & repeat"},
         {name: "Completed"}
     ]
-    console.log(exInfo)
     return (
         <div className='exerciseInfo'>
             {isSuccess &&
             <>
-                <Title tag='h2'>
+                <Title tag='h2' side='c'>
                     {data.exercise.name}
                 </Title>
                 {error &&

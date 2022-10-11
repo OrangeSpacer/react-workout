@@ -6,6 +6,7 @@ import Alert from '../../components/Alert/Alert'
 import { $api } from '../../components/api/api'
 import Exercise from '../../components/Exercise/Exercise'
 import Title from '../../components/Title/Title'
+import cn from "classnames"
 
 import './SingleWorkout.scss'
 
@@ -20,14 +21,13 @@ const SingleWorkout = () => {
         refetchOnWindowFocus:false
     })
 
-    const {mutate:setWorkoutCompleted, error:errorCompleted} = useMutation("Change log state", () => $api({
+    const {mutate:setWorkoutCompleted} = useMutation("Change log state", () => $api({
         url:'/workouts/log/completed',
         type: "PUT",
         body: {logId: newId}
     }), {
-        onSuccess(data){
-            console.log(data)
-            history(`/workouts`)
+        onSuccess(){
+            history(-1)
         }
     })
 
@@ -38,7 +38,6 @@ const SingleWorkout = () => {
             }
     },[content?.exerciseLogs])
 
-    console.log(content)
 
     return (
         <div className='singleWorkout'>
@@ -53,7 +52,7 @@ const SingleWorkout = () => {
                     <div className='singleWorkout__exercises'>
                         {content ? 
                             content.exerciseLogs.map((item:any,index:number) => 
-                            <div onClick={() => history(`/exercise/:${item._id}`)}  key={index} className='singleWorkout__link'>
+                            <div onClick={() => history(`/exercise/:${item._id}`)}  key={index} className={cn('singleWorkout__link',{['singleWorkout__completed']: item.completed===true})}>
                                 <Exercise imgPath={`../img/exercise/${item.exercise.imageId}.svg`} nameEx={item.exercise.name} times={item.exercise.times}/>
                             </div>):
                             <Alert type="error" text="Exercises not found"/>

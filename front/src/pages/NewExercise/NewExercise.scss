@@ -2,8 +2,11 @@
 @import '../../styles/animation.scss';
 .newWorkout{
     &__form{
+        margin: 100px auto 0 auto;
         display: flex;
         flex-direction: column;
+        max-width: 500px;
+        width: 100%;
         input{
             margin-bottom: 20px;
         }

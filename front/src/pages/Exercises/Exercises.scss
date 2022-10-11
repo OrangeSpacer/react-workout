@@ -56,7 +56,7 @@
                 background: transparent;
             }
             &_completed{
-                color: green;
+                color: green !important;
                 text-decoration: line-through;
                 cursor: default;
             }

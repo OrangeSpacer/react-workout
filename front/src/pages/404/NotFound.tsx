@@ -1,7 +1,7 @@
 
 const NotFound = ():JSX.Element => {
   return (
-    <div>404</div>
+    <div style={{textAlign:'center',fontSize:'36px'}}>404</div>
   )
 }
 

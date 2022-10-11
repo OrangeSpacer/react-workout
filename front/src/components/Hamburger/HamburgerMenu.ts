@@ -4,8 +4,12 @@ export const menu: {title:string,link:string}[] = [
         link:'/workouts'
     },
     {
-        title:'Create new',
+        title:'New workout',
         link:'/new-workout'
+    },
+    {
+        title:'New exercise',
+        link:'/new-exercise'
     },
     {
         title:'Profile',
